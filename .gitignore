@@ -14,7 +14,7 @@ yarn-error.log
 logs/
 *.log
 
-# IDE
+# IDEgit p
 .idea/
 *.sublime-workspace
 *.tmproj

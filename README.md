@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# Scholizare🎓
 
-First, run the development server:
+Scholizare is a platform designed to revolutionize the education experience by providing innovative tools and fostering a supportive community for students and teachers alike.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features✨
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- Mental Health Chatbot: Our advanced chatbot utilizes AI technology to provide personalized support and resources for students struggling with mental health issues, promoting well-being and resilience🤝.
+- Study Help Chatbot🤖: Get instant assistance with academic queries, access study materials, and receive study tips tailored to your needs, helping you achieve academic success. Powered by Gemini AI.
+- Interactive Learning Resources: Access a diverse range of interactive learning resources📒, including articles, tutorials, and quizzes👩🏻‍💻, to enhance your understanding and grasp of various subjects.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- Events Calendar🗓️: Stay informed about upcoming educational events and assignments and easily manage your schedule to prioritize learning opportunities.
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Sustainable Development Goals🎯
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- Quality Education📝: We are committed to ensuring inclusive and equitable quality education for all, leveraging technology to enhance access to education and improve learning outcomes.
 
-## Deploy on Vercel
+- Sustainable Cities and Communities💫: By fostering a supportive community among students and teachers, we aim to contribute to building inclusive, safe, resilient, and sustainable communities within educational settings.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Technology🖧
+
+
+| Technology  | Use Case     
+| :-------- | :------- 
+| `NextJs` | `Front-End` 
+| `Firebase` | `Database` 
+| `Google Maps API` | `Find nearest tutor`
+| `Gemini` | `Chat Bot`
+| `Google Calender` | `Scheduling`
+
+
+
+
+## Contributors🤝
+
+- [@RudreshPandey](https://github.com/RudreshPandey203)
+- [@KadambiniTrivedi](https://github.com/Kadambini30)
+- [@PranaySingnalli](https://github.com/pranaysinganalli)
+
+
+
+## Contact Us✉️ 
+
+Have questions, feedback, or suggestions? We'd love to hear from you! Reach out to us at pandeyrudresh203@gmail.com .
+
+
+
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
+
+

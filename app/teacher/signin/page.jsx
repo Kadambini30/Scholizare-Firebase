@@ -1,9 +1,11 @@
 // pages/login.js
 "use client"
 import React, { useState } from "react";
-import { auth } from "../../firebase/config"; // Replace with the actual path to your AuthContext
+import { auth,db } from "../../firebase/config"; // Replace with the actual path to your AuthContext
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
+import { doc, getDoc } from "firebase/firestore";
 import Link from "next/link";
 
 const Login = () => {
@@ -15,41 +17,47 @@ const Login = () => {
     const [signInWithEmailAndPassword] = useSignInWithEmailAndPassword(auth);
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        try {
-            const res = await signInWithEmailAndPassword(
-                email,
-                password
-            );
-            console.log({ res });
-            sessionStorage.setItem('user',true);
-            setEmail("");
-            setPassword("");
-            router.replace(`/teacher/${res.user.uid}`);
-
-        } catch (error) {
-            setError(error.message);
+      e.preventDefault();
+  
+      try {
+        const res = await signInWithEmailAndPassword(email, password);
+        console.log(res.user.uid);
+        const docRef = doc(db, "teachers", res.user.uid);
+        console.log(docRef)
+        const docSnap = await getDoc(docRef);
+        console.log(docSnap)
+  
+        if (docSnap.exists()) {
+          console.log("Document data:", docSnap.data());
+          // User is a student, proceed with login
+          sessionStorage.setItem("user", JSON.stringify(res.user)); // Add user to session storage
+          router.replace(`/teacher/${res.user.uid}`);
+        } else {
+          // User not found in the students table, display an error
+          setError("Invalid login credentials.");
         }
+      } catch (error) {
+        setError(error.message);
+      }
     };
 
     return (
       <div className="flex flex-col text-center justify-center items-center w-screen h-screen bg-cover pt-10" style={{ backgroundImage: "url('/classroom.png')" }}>
-      <div className="absolute top-5 left-3 w-[26rem] h-32" style={{ backgroundImage: "url('   ')" }}>
+      <div className="absolute top-5 left-3 md:w-[26rem] w-20 h-32" style={{ backgroundImage: "url('   ')" }}>
             </div>
-            <div className="flex flex-col items-center justify-center gap-4 text-4xl font-jacques h-content  py-2 px-2 backdrop-blur-sm bg-white bg-opacity-10 rounded-3xl shadow border-4 border-black border-opacity-0">
-              <h1 className="font-bold my-4 text-6xl text-primary">Login</h1>
-              <form onSubmit={handleSubmit} className="flex flex-col gap-3 px-4 py-3 items-center">
+            <div className="w-content md:w-[35rem] flex flex-col items-center justify-center gap-4 text-4xl font-jacques h-content  py-2 px-2 backdrop-blur-sm bg-white bg-opacity-10 rounded-3xl shadow border-4 border-black border-opacity-0">
+              <h1 className="w-content font-bold my-4 text-6xl text-primary">Login</h1>
+              <form onSubmit={handleSubmit} className="flex flex-col gap-3 md:px-4 py-3 items-center w-full">
                 <input
                   type="text"
                   placeholder="Email"
-                  className="border-2 rounded-md shadow-xl outline-p-2none placeholder:text-2xl placeholder:text-black p-1"
+                  className="border-2 rounded-md shadow-xl outline-p-2none placeholder:text-xl placeholder:text-black px-3 py-1 w-full"
                   onChange={(e)=>{setEmail(e.target.value)}}
                 />
                 <input
                   type="password"
                   placeholder="Password"
-                  className="border-2 rounded-md  shadow-xl  outline-p-2none placeholder:text-2xl placeholder:text-black p-1"
+                  className="border-2 rounded-md  shadow-xl  outline-p-2none placeholder:text-xl placeholder:text-black px-3 py-1 w-full"
                   onChange = {(e)=>{setPassword(e.target.value)}}
                 />
                 <button
@@ -58,7 +66,7 @@ const Login = () => {
                 >
                   Login
                 </button>
-                {error && (        <div className="flex flex-col gap-3 px-4 py-3">{error}</div>
+                {error && (        <div className="text-red-500 flex flex-col gap-3 px-4 py-3">Bad Auth</div>
       )}
               <Link href={"/teacher/signup"} className="text-base w-72" >
                   Dont have an account? <span className="text-primary">Register here</span>.
